@@ -1,8 +1,12 @@
-var Estimote = require('bleacon').Estimote;
-console.log("done");
-var uuid = 'b9407f30-f5f8-466e-aff9-25556b57fe6d';
-var major = 0;
-var minor = 0;
-Estimote.discoverAll(function(e){
-	console.log(e);
+const noble = require('noble');
+
+noble.startScanning();
+
+noble.on('discover', function(peripheral) {
+	let macAddress = peripheral.uuid;
+	let rss = peripheral.rssi;
+	let localName = advertisement.localName;
+	let realUuid = advertisement.manufacturerData;
+	console.log("Beacon detected: " + macAddress + " " rss + " " + localName);
+	console.log("----" + realUuid + "-----");
 });
